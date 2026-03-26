@@ -36,13 +36,13 @@ const setCharacter = (
                 mesh.frustumCulled = true;
               }
             });
+            // Scale and position Avaturn model to fit camera view
+            character.scale.set(4.5, 4.5, 4.5);
+            character.position.set(0, 7.5, 0);
+
             resolve(gltf);
             setCharTimeline(character, camera);
             setAllTimeline();
-            const footR = character.getObjectByName("RightFoot");
-            const footL = character.getObjectByName("LeftFoot");
-            if (footR) footR.position.y = 3.36;
-            if (footL) footL.position.y = 3.36;
 
             // Monitor scale is handled by GsapScroll.ts animations
 
