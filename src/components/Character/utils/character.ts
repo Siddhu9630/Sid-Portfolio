@@ -31,20 +31,6 @@ const setCharacter = (
             character.traverse((child: any) => {
               if (child.isMesh) {
                 const mesh = child as THREE.Mesh;
-
-                // Change clothing colors to match site theme
-                if (mesh.material) {
-                  if (mesh.name === "BODY.SHIRT") { // The shirt mesh
-                    const newMat = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
-                    newMat.color = new THREE.Color("#8B4513");
-                    mesh.material = newMat;
-                  } else if (mesh.name === "Pant") {
-                    const newMat = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
-                    newMat.color = new THREE.Color("#000000");
-                    mesh.material = newMat;
-                  }
-                }
-
                 child.castShadow = true;
                 child.receiveShadow = true;
                 mesh.frustumCulled = true;
@@ -53,8 +39,10 @@ const setCharacter = (
             resolve(gltf);
             setCharTimeline(character, camera);
             setAllTimeline();
-            character!.getObjectByName("footR")!.position.y = 3.36;
-            character!.getObjectByName("footL")!.position.y = 3.36;
+            const footR = character.getObjectByName("RightFoot");
+            const footL = character.getObjectByName("LeftFoot");
+            if (footR) footR.position.y = 3.36;
+            if (footL) footL.position.y = 3.36;
 
             // Monitor scale is handled by GsapScroll.ts animations
 
