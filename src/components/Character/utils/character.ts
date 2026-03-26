@@ -31,17 +31,44 @@ const setCharacter = (
             character.traverse((child: any) => {
               if (child.isMesh) {
                 const mesh = child as THREE.Mesh;
+                const meshName = mesh.name.toLowerCase();
 
-                // Change clothing colors to match site theme
                 if (mesh.material) {
-                  if (mesh.name === "BODY.SHIRT") { // The shirt mesh
+                  if (mesh.name === "BODY.SHIRT") {
+                    // Black polo shirt
                     const newMat = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
-                    newMat.color = new THREE.Color("#8B4513");
+                    newMat.color = new THREE.Color("#0a0a0a");
                     mesh.material = newMat;
                   } else if (mesh.name === "Pant") {
+                    // Light blue jeans
                     const newMat = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
-                    newMat.color = new THREE.Color("#000000");
+                    newMat.color = new THREE.Color("#B8CCE0");
                     mesh.material = newMat;
+                  } else if (
+                    meshName.includes("hair") ||
+                    meshName.includes("beard") ||
+                    meshName.includes("brow") ||
+                    meshName.includes("mustache") ||
+                    meshName.includes("eyelash")
+                  ) {
+                    // Black hair and facial hair
+                    const newMat = (mesh.material as THREE.Material).clone() as THREE.MeshStandardMaterial;
+                    newMat.color = new THREE.Color("#0d0d0d");
+                    mesh.material = newMat;
+                  } else {
+                    // Auto-detect skin-toned meshes by color range and apply dark Indian skin tone
+                    const mat = mesh.material as THREE.MeshStandardMaterial;
+                    if (mat && mat.color) {
+                      const r = mat.color.r;
+                      const g = mat.color.g;
+                      const b = mat.color.b;
+                      // Skin tones: high red, medium green, lower blue, red > green > blue
+                      if (r > 0.55 && g > 0.3 && g < 0.78 && b > 0.18 && b < 0.62 && r > g && g > b) {
+                        const newMat = mat.clone();
+                        newMat.color = new THREE.Color("#6B3A2A");
+                        mesh.material = newMat;
+                      }
+                    }
                   }
                 }
 
