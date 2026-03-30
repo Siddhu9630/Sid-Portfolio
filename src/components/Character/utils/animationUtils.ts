@@ -7,13 +7,8 @@ const setAnimations = (gltf: GLTF) => {
   let mixer = new THREE.AnimationMixer(character);
 
   if (gltf.animations && gltf.animations.length > 0) {
-    const introClip = gltf.animations.find((c) => c.name === "introAnimation");
-    if (introClip) {
-      const introAction = mixer.clipAction(introClip);
-      introAction.setLoop(THREE.LoopOnce, 1);
-      introAction.clampWhenFinished = true;
-      introAction.play();
-    }
+    // Skip introAnimation — it was designed for the original sitting character
+    // and causes bone deformation on the Avaturn standing model
 
     const clipNames = ["key1", "key2", "key5", "key6"];
     clipNames.forEach((name) => {
@@ -35,15 +30,9 @@ const setAnimations = (gltf: GLTF) => {
 
   function startIntro() {
     if (!gltf.animations || gltf.animations.length === 0) return;
-    const introClip = gltf.animations.find((c) => c.name === "introAnimation");
-    if (!introClip) return;
-    const introAction = mixer.clipAction(introClip);
-    introAction.clampWhenFinished = true;
-    introAction.reset().play();
-    setTimeout(() => {
-      const blink = gltf.animations.find((c) => c.name === "Blink");
-      if (blink) mixer.clipAction(blink).play().fadeIn(0.5);
-    }, 2500);
+    // Start blink immediately instead of intro animation
+    const blink = gltf.animations.find((c) => c.name === "Blink");
+    if (blink) mixer.clipAction(blink).play().fadeIn(0.5);
   }
 
   function hover(gltf: GLTF, hoverDiv: HTMLDivElement) {
