@@ -58,10 +58,10 @@ const setCharacter = (
         const rightArm = character.getObjectByName("RightArm");
         const leftForeArm = character.getObjectByName("LeftForeArm");
         const rightForeArm = character.getObjectByName("RightForeArm");
-        if (leftArm) leftArm.rotation.z = -1.1;
-        if (rightArm) rightArm.rotation.z = 1.1;
-        if (leftForeArm) leftForeArm.rotation.z = -0.1;
-        if (rightForeArm) rightForeArm.rotation.z = 0.1;
+        if (leftArm) leftArm.rotation.z = 1.2;
+        if (rightArm) rightArm.rotation.z = -1.2;
+        if (leftForeArm) leftForeArm.rotation.z = 0.1;
+        if (rightForeArm) rightForeArm.rotation.z = -0.1;
 
         resolve(avaturnGltf);
 
