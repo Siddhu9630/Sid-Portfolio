@@ -50,8 +50,8 @@ const setCharacter = (
           }
         });
 
-        character.scale.set(4.5, 4.5, 4.5);
-        character.position.set(0, 7.5, 0);
+        character.scale.set(8, 8, 8);
+        character.position.set(0, 1, 0);
 
         resolve(avaturnGltf);
 
