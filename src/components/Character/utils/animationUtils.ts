@@ -6,17 +6,8 @@ const setAnimations = (gltf: GLTF) => {
   let character = gltf.scene;
   let mixer = new THREE.AnimationMixer(character);
 
-  if (gltf.animations && gltf.animations.length > 0) {
-    // Skip introAnimation — it was designed for the original sitting character
-    // and causes bone deformation on the Avaturn standing model
-
-    const typingAction = createBoneAction(gltf, mixer, "typing", typingBoneNames);
-    if (typingAction) {
-      typingAction.enabled = true;
-      typingAction.play();
-      typingAction.timeScale = 1.2;
-    }
-  }
+  // Typing animation disabled — retargeted arm rotations from sitting pose
+  // cause severe bone deformation on the Avaturn standing model
 
   function startIntro() {
     if (!gltf.animations || gltf.animations.length === 0) return;
