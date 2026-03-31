@@ -10,16 +10,6 @@ const setAnimations = (gltf: GLTF) => {
     // Skip introAnimation — it was designed for the original sitting character
     // and causes bone deformation on the Avaturn standing model
 
-    const clipNames = ["key1", "key2", "key5", "key6"];
-    clipNames.forEach((name) => {
-      const clip = THREE.AnimationClip.findByName(gltf.animations, name);
-      if (clip) {
-        const action = mixer.clipAction(clip);
-        action.play();
-        action.timeScale = 1.2;
-      }
-    });
-
     const typingAction = createBoneAction(gltf, mixer, "typing", typingBoneNames);
     if (typingAction) {
       typingAction.enabled = true;

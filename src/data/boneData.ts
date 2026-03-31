@@ -1,6 +1,9 @@
+// Upper body only — original typing was a sitting pose, lower body bones cause distortion
 export const typingBoneNames = [
-  "LeftUpLeg", "RightUpLeg", "LeftLeg", "RightLeg",
-  "LeftForeArm", "RightForeArm", "LeftHand", "RightHand",
+  "LeftShoulder", "RightShoulder",
+  "LeftArm", "RightArm",
+  "LeftForeArm", "RightForeArm",
+  "LeftHand", "RightHand",
   "LeftHandThumb1", "LeftHandThumb2", "LeftHandThumb3",
   "RightHandThumb1", "RightHandThumb2", "RightHandThumb3",
   "LeftHandIndex1", "LeftHandIndex2", "LeftHandIndex3",
@@ -11,7 +14,7 @@ export const typingBoneNames = [
   "RightHandRing1", "RightHandRing2", "RightHandRing3",
   "LeftHandPinky1", "LeftHandPinky2", "LeftHandPinky3",
   "RightHandPinky1", "RightHandPinky2", "RightHandPinky3",
-  "LeftArm", "RightArm", "LeftShoulder", "RightShoulder",
 ];
 
 export const eyebrowBoneNames: string[] = [];
+
