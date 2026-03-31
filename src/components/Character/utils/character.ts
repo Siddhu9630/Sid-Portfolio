@@ -53,6 +53,16 @@ const setCharacter = (
         character.scale.set(8, 8, 8);
         character.position.set(0, 1, 0);
 
+        // Avaturn exports in T-pose — rotate arms down to natural standing position
+        const leftArm = character.getObjectByName("LeftArm");
+        const rightArm = character.getObjectByName("RightArm");
+        const leftForeArm = character.getObjectByName("LeftForeArm");
+        const rightForeArm = character.getObjectByName("RightForeArm");
+        if (leftArm) leftArm.rotation.z = -1.1;
+        if (rightArm) rightArm.rotation.z = 1.1;
+        if (leftForeArm) leftForeArm.rotation.z = -0.1;
+        if (rightForeArm) rightForeArm.rotation.z = 0.1;
+
         resolve(avaturnGltf);
 
         try {
